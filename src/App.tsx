@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { Todo } from './components/model';
+import { Todo } from './model';
 import InputField from './components/InputField';
+import TodoList from './components/TodoList';
 
 import './App.css';
 
@@ -17,7 +18,10 @@ const App: React.FC = () => {
         timeZone: 'Europe/Berlin',
         timeStyle: 'long',
       });
-      setTodos([...todos, { id: timestamp, todo, isDone: false }]);
+      setTodos([
+        ...todos,
+        { id: Date.now(), createdAt: timestamp, text: todo, isDone: false },
+      ]);
       setTodo('');
     }
   };
@@ -28,6 +32,7 @@ const App: React.FC = () => {
     <div className='App'>
       <span className='heading'>Taskify</span>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 };

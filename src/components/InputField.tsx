@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import './styles.css';
 
 interface InputFieldProps {
@@ -11,10 +12,18 @@ const InputField: React.FC<InputFieldProps> = ({
   setTodo,
   handleAdd,
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <form className='input' onSubmit={handleAdd}>
+    <form
+      className='input'
+      onSubmit={(e) => {
+        handleAdd(e);
+        inputRef.current?.blur(); // blur the input field. i.e. remove the focus
+      }}>
       <input
         className='input__box'
+        ref={inputRef}
         type='text'
         placeholder='Enter a task'
         value={todo}
