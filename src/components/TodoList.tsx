@@ -20,7 +20,7 @@ const TodoList: React.FC<TodoListProps> = ({
       <Droppable droppableId='ActiveTodos'>
         {(provided, snapshot) => (
           <div
-            className={`todo-list active ${
+            className={`todos-list active ${
               snapshot.isDraggingOver ? 'dragactive' : ''
             }`}
             ref={provided.innerRef}
@@ -42,7 +42,7 @@ const TodoList: React.FC<TodoListProps> = ({
       <Droppable droppableId='CompletedTodos'>
         {(provided, snapshot) => (
           <div
-            className={`todo-list completed ${
+            className={`todos-list completed ${
               snapshot.isDraggingOver ? 'dragcompleted' : ''
             }`}
             ref={provided.innerRef}
